@@ -33,7 +33,7 @@ impl From<String> for Value {
 impl From<&str> for Value {
     fn from(s: &str) -> Self {
         Self {
-            value: Some(value::Value::String(s.into())),
+            // value: Some(value::Value::String(s.into())),
         }
     }
 }
