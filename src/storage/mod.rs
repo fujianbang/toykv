@@ -1,3 +1,6 @@
+mod memory;
+pub use memory::MemTable;
+
 use crate::{KvError, Kvpair, Value};
 
 pub trait Storage {
@@ -12,5 +15,5 @@ pub trait Storage {
     /// 遍历 HashTable，返回所有 kv pair（这个接口不好）
     fn get_all(&self, table: &str) -> Result<Vec<Kvpair>, KvError>;
     /// 遍历 HashTable，返回 kv pair 的 Iterator
-    fn get_iter(&self, table: &str) -> Result<Box<dyn Iterator<Item=Kvpair>>, KvError>;
+    fn get_iter(&self, table: &str) -> Result<Box<dyn Iterator<Item = Kvpair>>, KvError>;
 }

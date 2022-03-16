@@ -1,8 +1,8 @@
 use anyhow::Result;
 use async_prost::AsyncProstStream;
 use futures::prelude::*;
-use toykv::{CommandRequest, CommandResponse};
 use tokio::net::TcpListener;
+use toykv::{CommandRequest, CommandResponse};
 use tracing::info;
 
 #[tokio::main]
