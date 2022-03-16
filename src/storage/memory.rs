@@ -22,4 +22,32 @@ impl MemTable {
     }
 }
 
-impl Storage for MemTable {}
+impl Storage for MemTable {
+    fn get(&self, table: &str, key: &str) -> Result<Option<Value>, KvError> {
+        let table = self.get_or_create_table(table);
+        Ok(table.get(key).map(|v| v.value().clone()))
+    }
+
+    fn set(&self, table: &str, key: String, value: Value) -> Result<Option<Value>, KvError> {
+        let table = self.get_or_create_table(table);
+        Ok(table.insert(key, value))
+    }
+
+    fn contains(&self, table: &str, key: &str) -> Result<bool, KvError> {
+        let table = self.get_or_create_table(table);
+        Ok(table.contains_key(key))
+    }
+
+    fn del(&self, table: &str, key: &str) -> Result<Option<Value>, KvError> {
+        let table = self.get_or_create_table(table);
+        Ok(table.remove(key).map(|(_k, v)| v))
+    }
+
+    fn get_all(&self, table: &str) -> Result<Vec<Kvpair>, KvError> {
+        todo!()
+    }
+
+    fn get_iter(&self, table: &str) -> Result<Box<dyn Iterator<Item=Kvpair>>, KvError> {
+        todo!()
+    }
+}
